@@ -1,0 +1,84 @@
+:root{
+  color-scheme: light;
+  --header-bg:rgba(255,255,255,.92);
+  --blanco:#ffffff; --gris-claro:#f3f3f3; --gris-borde:#e2e2e2;
+  --gris-medio:#8a8a8a; --gris-oscuro:#444444; --negro:#111111;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* Modo oscuro: solo se redefinen los colores */
+:root[data-tema="oscuro"]{
+  color-scheme: dark;
+  --header-bg:rgba(17,17,17,.92);
+  --blanco:#111111; --gris-claro:#1b1b1b; --gris-borde:#2e2e2e;
+  --gris-medio:#9a9a9a; --gris-oscuro:#c9c9c9; --negro:#f4f4f4;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--blanco);color:var(--negro);font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .3s ease,color .3s ease}
+
+/* Menú centrado */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--gris-borde)}
+nav{display:flex;justify-content:center;gap:8px;padding:16px 12px;flex-wrap:wrap}
+.btn{display:inline-block;font:inherit;font-size:.9rem;font-weight:500;color:var(--blanco);background:var(--negro);border:1px solid var(--negro);padding:9px 22px;border-radius:999px;text-decoration:none;cursor:pointer;transition:background .3s ease,color .3s ease,transform .2s ease}
+.btn:hover,.btn:focus-visible,nav a.activo{background:var(--blanco);color:var(--negro)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:2px solid var(--gris-medio);outline-offset:3px}
+
+section{max-width:960px;margin:0 auto;padding:96px 24px}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin:0 0 12px}
+h2{font-size:1.8rem;font-weight:600;letter-spacing:-.02em;margin:0 0 32px;text-align:center}
+p{color:var(--gris-oscuro);margin:0 0 16px}
+
+/* Inicio */
+#inicio{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.foto{width:200px;height:240px;margin-bottom:36px;border:1px solid var(--gris-borde);border-radius:20px;background:var(--gris-claro);overflow:hidden}
+.foto img{display:block;width:100%;height:100%;object-fit:cover}
+.subtitulo{font-size:1.1rem;color:var(--gris-medio);margin-bottom:32px}
+
+/* Sobre mí */
+#sobre-mi{background:var(--gris-claro);max-width:none}
+.contenido{max-width:640px;margin:0 auto;text-align:center}
+.linkedin{margin-top:28px}
+
+/* Proyectos */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.proyecto{display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:220px;padding:28px;border:1px solid var(--gris-borde);border-radius:16px;background:var(--blanco)}
+.miniatura{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;margin-bottom:16px;background:var(--gris-claro)}
+.proyecto h3{margin:0 0 8px;font-size:1.15rem;font-weight:600}
+.proyecto p{margin:0;font-size:.92rem;color:var(--gris-medio)}
+.proyecto .btn{align-self:flex-start;font-size:.85rem;padding:8px 18px}
+
+/* Contacto */
+#contacto{text-align:center}
+.correo{font-size:1.2rem;color:var(--negro);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--gris-borde);transition:text-decoration-color .3s}
+.correo:hover{text-decoration-color:var(--negro)}
+.redes{margin-top:28px;display:flex;justify-content:center;gap:14px}
+.cv{margin-top:40px}
+
+/* Botones con logo */
+.btn-icono{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;color:var(--blanco);background:var(--negro);border:1px solid var(--negro);transition:background .3s ease,color .3s ease,transform .2s ease}
+.btn-icono:hover,.btn-icono:focus-visible{background:var(--blanco);color:var(--negro)}
+.btn-icono:active{transform:scale(.95)}
+.btn-icono:focus-visible{outline:2px solid var(--gris-medio);outline-offset:3px}
+
+/* Tecnologías */
+.tecnologias{display:flex;flex-wrap:wrap;justify-content:center;gap:24px 28px;margin:32px 0 8px}
+.tec{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gris-oscuro)}
+.tec figcaption{font-size:.75rem;color:var(--gris-medio)}
+
+/* Ajustes del menú: idioma y tema */
+.ajustes{display:flex;align-items:center;gap:6px;margin-left:8px;padding-left:12px;border-left:1px solid var(--gris-borde)}
+.btn-idioma{padding:7px 12px;font-size:.78rem;letter-spacing:.04em}
+.btn-idioma[aria-pressed="true"]{background:var(--blanco);color:var(--negro)}
+.btn-icono.chico{width:36px;height:36px}
+.icono-sol{display:none}
+:root[data-tema="oscuro"] .icono-sol{display:block}
+:root[data-tema="oscuro"] .icono-luna{display:none}
+/* Detalles de los iconos de tecnologías según el tema */
+.tec svg [fill="#fff"]{fill:var(--gris-claro)}
+@media (max-width:520px){.ajustes{margin-left:0;padding-left:0;border-left:0}}
+
+footer{text-align:center;padding:32px 24px;font-size:.8rem;color:var(--gris-medio);border-top:1px solid var(--gris-borde)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
